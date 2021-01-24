@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<h1>表单</h1>
+
+<form action="http://127.0.0.1:3000/login_pwd" method="post" onsubmit="return saveReport();" id="showDataForm">
+    <p>
+        <label for="username">用户名：</label>
+        <input type="text" name="username" id="username"/>
+    </p>
+    <p>
+        <label for="password">密&nbsp;&nbsp;码：</label>
+        <input type="password" name="password" id="password"/>
+    </p>
+    <p>
+        <label>性&nbsp;&nbsp;别：</label>
+        <input type="radio" name="gender" value="0" id="male"/> <label for="male">男</label>
+        <input type="radio" name="gender" value="1" id="female"/> <label for="female">女</label>
+    </p>
+    <p>
+        <label>爱&nbsp;&nbsp;好：</label>
+        <input type="checkbox" name="like" value="study" /> 学习
+        <input type="checkbox" name="like" value="sport" /> 运动
+        <input type="checkbox" name="like" value="game"/> 打游戏
+    </p>
+    <p>
+        <label>图&nbsp;&nbsp;片：</label>
+        <input type="file" name="" />
+
+    </p>
+    <p>
+        <label>个人介绍：</label>
+        <textarea name="introduce">123</textarea>
+    </p>
+    <p>
+        <label>籍贯</label>
+        <select name="site">
+            <option value="0">北京</option>
+            <option value="1">上海</option>
+            <option value="2">广州</option>
+        </select>
+    </p>
+    <p>
+        <img src="http://127.0.0.1:3000/captcha" alt="验证码" onclick="updateCap()" id="cap">
+        <label for="username">验证码：</label>
+        <input type="text" name="captcha" id="captcha"/>
+    </p>
+    <!-- 隐藏表单-->
+    <input type="hidden" name="hidd" value="123">
+
+    <p>
+        <input type="submit" name="提交">
+<!--        <input type="image" src="../photo/2.jpg">-->
+        <!--            <input type="reset" name="重置">-->
+    </p>
+</form>
+<div id="text"></div>
+</body>
+</body>
+<script type="text/javascript" src="../../js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    function saveReport() {
+// jquery 表单提交
+        $("#showDataForm").ajaxSubmit(function(message) {
+            console.log(message)
+            // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容
+        });
+
+        return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+    }
+    function updateCap(event){
+        document.getElementById('cap').src = "http://127.0.0.1:3000/captcha?time="+Date.now()
+    }
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "get",
+            url: "http://localhost:3000/index_category",
+            dataType: "json",
+            success:function (message) {
+                // let jsonData = $.parseJSON(message) ;
+                // let jsonData = JSON.parse(message) ;
+                console.log(message.data)
+                message.data.forEach((msg)=>{
+                    window.document.getElementById('text').innerText += msg.title+'\n'
+                })
+            },
+            error:function (message) {
+                console.log('失败')
+            }
+        });
+    });
+</script>
+</html>
