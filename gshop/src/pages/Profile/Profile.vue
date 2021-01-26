@@ -62,13 +62,13 @@
               </span>
             </div>
           </a>
-          <!-- 硅谷外卖会员卡 -->
+          <!-- 外卖会员卡 -->
           <a href="javascript:" class="my_order">
             <span>
               <i class="iconfont iconhuiyuan"></i>
             </span>
             <div class="my_order_div">
-              <span>硅谷外卖会员卡</span>
+              <span>外卖会员卡</span>
               <span class="my_order_icon">
                 <i class="iconfont iconyoujiantou"></i>
               </span>
