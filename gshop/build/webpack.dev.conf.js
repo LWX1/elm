@@ -11,6 +11,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
+console.log(HOST)
 const PORT = process.env.PORT && Number(process.env.PORT)
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -22,6 +23,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // headers: {
+    //   'Access-Control-Allow-Origin': '*'
+    // },
     disableHostCheck: true, 
     clientLogLevel: 'warning',
     historyApiFallback: {
